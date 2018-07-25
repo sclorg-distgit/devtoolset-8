@@ -9,7 +9,7 @@
 Summary: Package that installs %scl
 Name: %scl_name
 Version: 8.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 Group: Applications/File
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -145,6 +145,7 @@ export LD_LIBRARY_PATH=%{_scl_root}\$rpmlibdir\$rpmlibdir32:%{_scl_root}\$rpmlib
 # duplicate python site.py logic for sitepackages
 pythonvers=`python -c 'import sys; print sys.version[:3]'`
 export PYTHONPATH=%{_prefix}/lib64/python\$pythonvers/site-packages:%{_prefix}/lib/python\$pythonvers/site-packages\${PYTHONPATH:+:\${PYTHONPATH}}
+export PKG_CONFIG_PATH=%{_libdir}/pkgconfig\${PKG_CONFIG_PATH:+:\${PKG_CONFIG_PATH}}
 EOF
 
 # Sudo script
@@ -243,6 +244,9 @@ if [ $1 = 0 ]; then
 fi
 
 %changelog
+* Wed Jun 27 2018 Marek Polacek <polacek@redhat.com> - 8.0.2
+- add PKG_CONFIG_PATH
+
 * Fri Jun  8 2018 Marek Polacek <polacek@redhat.com> - 8.0.1
 - fix enable_devtoolset8 macro
 
