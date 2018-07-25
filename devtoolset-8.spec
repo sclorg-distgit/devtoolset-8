@@ -9,7 +9,7 @@
 Summary: Package that installs %scl
 Name: %scl_name
 Version: 8.0
-Release: 0%{?dist}
+Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/File
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -172,7 +172,7 @@ EOF
 
 # This allows users to build packages using DTS.
 cat >> %{buildroot}%{_root_sysconfdir}/rpm/macros.%{scl}-config << EOF
-%%enable_devtoolset7 %%global ___build_pre %%{___build_pre}; source scl_source enable %{scl} || :
+%%enable_devtoolset8 %%global ___build_pre %%{___build_pre}; source scl_source enable %{scl} || :
 EOF
 
 mkdir -p %{buildroot}%{_scl_root}/etc/alternatives %{buildroot}%{_scl_root}/var/lib/alternatives
@@ -243,5 +243,8 @@ if [ $1 = 0 ]; then
 fi
 
 %changelog
+* Fri Jun  8 2018 Marek Polacek <polacek@redhat.com> - 8.0.1
+- fix enable_devtoolset8 macro
+
 * Fri Apr 27 2018 Marek Polacek <polacek@redhat.com> - 8.0.0
 - new package
