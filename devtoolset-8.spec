@@ -9,7 +9,7 @@
 Summary: Package that installs %scl
 Name: %scl_name
 Version: 8.0
-Release: 2%{?dist}
+Release: 2.bs1%{?dist}
 License: GPLv2+
 Group: Applications/File
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
